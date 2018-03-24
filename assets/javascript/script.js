@@ -10,21 +10,22 @@ $('document').ready(function() {
 
 	function getGifs() {
 		var animal = $(this).attr("data-name");
-		var queryURL = "https://api.giphy.com/v1/gifs/trending?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10"
 
-		.ajax({
+		$.ajax({
 			url: queryURL,
 			method: "GET"
 		}).then(function(response) {
 
 			var animalGifs = response.data;
 
-			for (let a = 0; 0 < response.length; a++) {
+			for (let a = 0; 0 < animalGifs.length; a++) {
 
-				var gifDiv = $("<img>");
-				gifDiv.attr("src", animalGifs[i].images.fixed_height_still.url);
+				console.log(gifDiv)
 
-				$("#gifGallery").prepend(gifDiv);
+				gifDiv.attr("src", animalGifs[a].images.fixed_height_still.url);
+
+				$("#gifGallery").append(gifDiv);
 			}
 		})
 	}
