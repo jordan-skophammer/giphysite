@@ -23,17 +23,24 @@ $('document').ready(function() {
 
 			for (let a = 0; 0 < animalGifs.length; a++) {
 
-				var gifDiv = $("<img>");
+				var gifDiv = $("<div>")
 
-				gifDiv.addClass("createdGif");
+				var p = $("<p>").text("Rating " + animalGifs[a].rating.toUpperCase());
 
-				gifDiv.attr("src", animalGifs[a].images.fixed_height_still.url);
+				var gif = $("<img>");
 
-				gifDiv.attr("stillImg", animalGifs[a].images.fixed_height_still.url);
+				gif.addClass("createdGif");
 
-				gifDiv.attr("data-class", "still")
+				gif.attr("src", animalGifs[a].images.fixed_height_still.url);
 
-				gifDiv.attr("animateImg", animalGifs[a].images.fixed_height.url);
+				gif.attr("stillImg", animalGifs[a].images.fixed_height_still.url);
+
+				gif.attr("data-class", "still")
+
+				gif.attr("animateImg", animalGifs[a].images.fixed_height.url);
+
+				gifDiv.append(p);
+				gifDiv.append(gif);
 
 				$("#gifGallery").append(gifDiv);
 			}
