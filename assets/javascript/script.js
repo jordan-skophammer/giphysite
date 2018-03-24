@@ -2,11 +2,13 @@ $('document').ready(function() {
 
 	var animalsArray = [];
 
+	var userText = $("#userInput").value;
+
 	$('[name="searchText"]').on("click", function() {
 
 		$('[name="searchText"]').val('');
 
-	})
+	});
 
 	function getGifs() {
 		var animal = $(this).attr("data-name");
@@ -39,36 +41,39 @@ $('document').ready(function() {
 				gifDiv.append(gif);
 
 				$("#gifGallery").append(gifDiv);
-			}
-		})
-	}
+			};
+		});
+	};
 
 	function addToArray(event) {
 
 		var animailInput = $("#userInput").val().trim();
 
-		animalsArray.push(animailInput);
+		if (animailInput === "" || animailInput === "Search") {
+
+			return false;
+		}else {
+
+			animalsArray.push(animailInput);
 		
-		addButton();
+			addButton();
 
-		$("#userInput").val('Search')
-
-	}
+			$("#userInput").val('Search');
+		};
+	};
 
 	$("#userInput").keyup(function(event) {
 
 		if (event.keyCode === 13) {
 			addToArray();
-		}
-		
-	})
+		};
+	});
 
 	$("#animalSearch").on("click", function(event) {
 
 		event.preventDefault();
 
 		addToArray();
-		
 	});
 
 	function addButton() {
@@ -82,9 +87,8 @@ $('document').ready(function() {
 			x.text(animalsArray[i]);
 
 			$("#addedButtons").append(x);
-		}
-
-	}
+		};
+	};
 
 	$(document).on("click", ".animalButton", getGifs);
 
@@ -100,7 +104,7 @@ $('document').ready(function() {
 		} else {
 
 			$(this).attr("src", $(this).attr("stillImg"));
-			$(this).attr("data-class", "still")
-		}
-	})
+			$(this).attr("data-class", "still");
+		};
+	});
 });
