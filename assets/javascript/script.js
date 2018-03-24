@@ -30,13 +30,9 @@ $('document').ready(function() {
 				var gif = $("<img>");
 
 				gif.addClass("createdGif");
-
 				gif.attr("src", animalGifs[a].images.fixed_height_still.url);
-
 				gif.attr("stillImg", animalGifs[a].images.fixed_height_still.url);
-
 				gif.attr("data-class", "still")
-
 				gif.attr("animateImg", animalGifs[a].images.fixed_height.url);
 
 				gifDiv.append(p);
@@ -66,7 +62,7 @@ $('document').ready(function() {
 
 		for (let i = 0; i < animalsArray.length; i++) {
 			var x = $("<button>");
-			x.addClass("animalButton");
+			x.addClass("animalButton waves-effect waves-light btn");
 			x.attr("data-name", animalsArray[i]);
 			x.text(animalsArray[i]);
 
@@ -74,8 +70,6 @@ $('document').ready(function() {
 		}
 
 	}
-
-
 
 	$(document).on("click", ".animalButton", getGifs);
 
@@ -94,15 +88,4 @@ $('document').ready(function() {
 			$(this).attr("data-class", "still")
 		}
 	})
-
-
 });
-
-
-
-//when submit button is pressed, add button with the submitted value. (movie app activity)
-
-//when added button is pressed, display 10 gifs of the value of button
-
-//when gif is pressed, begin playing, when pressed again, stop.
-
