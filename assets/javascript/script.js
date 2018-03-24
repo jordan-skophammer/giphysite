@@ -17,13 +17,23 @@ $('document').ready(function() {
 			method: "GET"
 		}).then(function(response) {
 
+			$("#gifGallery").empty();
+
 			var animalGifs = response.data;
 
 			for (let a = 0; 0 < animalGifs.length; a++) {
 
-				console.log(gifDiv)
+				var gifDiv = $("<img>");
+
+				gifDiv.addClass("createdGif");
 
 				gifDiv.attr("src", animalGifs[a].images.fixed_height_still.url);
+
+				gifDiv.attr("stillImg", animalGifs[a].images.fixed_height_still.url);
+
+				gifDiv.attr("data-class", "still")
+
+				gifDiv.attr("animateImg", animalGifs[a].images.fixed_height.url);
 
 				$("#gifGallery").append(gifDiv);
 			}
@@ -37,8 +47,6 @@ $('document').ready(function() {
 		var animailInput = $("#userInput").val().trim();
 
 		animalsArray.push(animailInput);
-
-		console.log(animalsArray)
 		
 		addButton();
 
@@ -64,8 +72,21 @@ $('document').ready(function() {
 
 	$(document).on("click", ".animalButton", getGifs);
 
-	// addButton();
+	$(document).on("click", ".createdGif", function() {
 
+		var gifClass = $(this).attr("data-class");
+
+		if (gifClass === "still") {
+
+			$(this).attr("src", $(this).attr("animateImg"));
+			$(this).attr("data-class", "animate");
+
+		} else {
+
+			$(this).attr("src", $(this).attr("stillImg"));
+			$(this).attr("data-class", "still")
+		}
+	})
 
 
 });
