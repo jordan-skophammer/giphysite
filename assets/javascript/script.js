@@ -43,9 +43,7 @@ $('document').ready(function() {
 		})
 	}
 
-	$("#animalSearch").on("click", function(event) {
-
-		event.preventDefault();
+	function addToArray(event) {
 
 		var animailInput = $("#userInput").val().trim();
 
@@ -54,6 +52,23 @@ $('document').ready(function() {
 		addButton();
 
 		$("#userInput").val('Search')
+
+	}
+
+	$("#userInput").keyup(function(event) {
+
+		if (event.keyCode === 13) {
+			addToArray();
+		}
+		
+	})
+
+	$("#animalSearch").on("click", function(event) {
+
+		event.preventDefault();
+
+		addToArray();
+		
 	});
 
 	function addButton() {
